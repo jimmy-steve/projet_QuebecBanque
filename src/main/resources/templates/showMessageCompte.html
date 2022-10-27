@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://thymeleaf.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://thymeleaf.org ">
+<head th:replace="common/header :: common-header"/>
+
+<body class="bg-dark">
+
+<div th:replace="common/header :: navbar"/>
+
+<br><br><br><br>
+<div>
+    <h1 class="text-center text-light">Confirmation d'insertion dans la base donnée</h1>
+</div>
+
+<div th:if="${message}" class="alert alert-success alert-dismissible fade show"
+     role="alert">
+    <strong>Succès !!</strong>
+    [[${message}]]
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+
+
+
+<h1>Result</h1>
+
+<div th:if="${message}" class="alert alert-success alert-dismissible fade show"
+     role="alert">
+    <strong>Succès !!</strong>
+    [[${message}]]
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+
+<p th:text="'Type de compte: ' + ${compte.type}"></p>
+<p th:text="'Numéro de client du client : '"></p>
+<a href="/addCompte">Submit another message</a>
+
+
+<div th:replace="common/header :: body-bottom-scripts" />
+</body>
+</html>

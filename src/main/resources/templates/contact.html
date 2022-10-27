@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.thymeleaf.org ">
+<head th:replace="common/header :: common-header"/>
+
+<body class="bg-dark">
+
+<div th:replace="common/header :: navbar"/>
+
+<!-- Accueil -->
+
+<div class="accueil" id="home">
+    <img src="https://us.123rf.com/450wm/nadya76/nadya761707/nadya76170700107/81544293-dlue-fleur-de-
+         lys-fond-noir-isol%C3%A9-avec-un-trac%C3%A9-de-d%C3%A9tourage-fermer-pas-d-ombres-pour-le-design-la-n.jpg?ver=6"
+         alt="logo quebec" class="logo-kyoto ">
+    <h1>Quebec Banque</h1>
+    <p class="sous-titre">La banque francophone de l'amérique du nord</p>
+    <a href="#asym" class="btn-accueil">En savoir plus</a>
+</div>
+
+
+<!-- Section parallax -->
+<section class="parallax">
+    <p>Je me souviens</p>
+    <span>Partez à l'aventure</span>
+</section>
+
+<div th:replace="common/header :: body-bottom-scripts" />
+</body>
+</html>

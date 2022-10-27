@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://thymeleaf.org ">
+<head th:replace="common/header :: common-header"/>
+
+<body class="bg-dark">
+
+<div th:replace="common/header :: navbar"/>
+
+<div th:if="${message}" class="alert alert-success alert-dismissible fade show"
+     role="alert">
+    <strong>Succès !!</strong>
+    [[${message}]]
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+
+
+<div class="accueil" id="home">
+
+    <div class="container-fluid text-center">
+        <div>
+            <br><br><br>
+            <div class="row">
+
+                <div class="col-2">
+
+                    <div class="row m-2 mt-5 mb-5">
+                        <img src="https://us.123rf.com/450wm/nadya76/nadya761707/nadya76170700107/
+                        81544293-dlue-fleur-de-lys-fond-noir-isol%C3%A9-avec-un-trac%C3%A9-de-d%C3%A9tourage-
+                        fermer-pas-d-ombres-pour-le-design-la-n.jpg?ver=6"
+                             alt="logo quebec">
+                    </div>
+
+                    <div class="row m-2 mt-5 mb-5">
+                        <button type="button" class="btn btn btn-outline-secondary couleurBleu">Portail</button>
+                    </div>
+                    <div class="row m-2 mt-5 mb-5">
+                        <a href="/addCompte" type="button" class="btn btn-outline-secondary couleurBleu">Ajouter une carte</a>
+                    </div>
+                    <div class="row m-2 mt-5 mb-5">
+                        <button type="button" class="btn btn-outline-secondary couleurBleu">Transactions</button>
+                    </div>
+                    <div class="row m-2 mt-5 mb-5">
+                        <button type="button" class="btn btn-outline-secondary couleurBleu">Afficher</button>
+                    </div>
+                    <div class="row m-2 mt-5 mb-5">
+                        <button type="button" class="btn btn-outline-secondary couleurBleu">Secondary</button>
+                    </div>
+                </div>
+
+                <div class="col-10">
+
+
+                    <table class="table text-light">
+                        <thead>
+                        <tr>
+                            <th scope="col" colspan="3" class="h2">Mon tableau de bord</th>
+                            <th class="h2 couleurBleu"> Chez QUÉBEC BANQUE</th>
+                        </tr>
+                        </thead>
+                    </table>
+
+                    <div class="row">
+
+
+                        <div class="card border-primary mb-3 col-4"
+                             style="border-radius: 20px;background: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65))">
+                            <form action="#" th:action="@{/addCompte}" th:object="${compte}" method="post"
+                                  class="row g-3 needs-validation m-3 border-primary" style="border-radius: 15px;"
+                                  novalidate>
+                                <h2 class="text-light">Créer un nouveau compte</h2>
+                                <div class="col-12">
+                                    <div class="input-group-prepend">
+
+                                        <table class="table">
+                                            <tr>
+                                                <th>
+                                                    <label for="type" class="form-label text-light">Choirsir Type Compte
+                                                        : </label>
+                                                </th>
+                                                <th>
+                                                    <select class="form-control " name="type" id="type"
+                                                            th:field="*{type}">
+                                                        <option th:value="epargne">Épargne</option>
+                                                        <option th:value="cheque">Chèque</option>
+                                                        <option th:value="retraitre">Retraite</option>
+                                                    </select>
+                                                </th>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2">
+                                                    <div class="form-check">
+
+                                                        <input class="form-check-input " type="checkbox" value=""
+                                                               id="invalidCheck" required>
+                                                        <label class="form-check-label text-light">
+                                                            Agree to terms and conditions
+                                                        </label>
+                                                        <div class="invalid-feedback">
+                                                            You must agree before submitting.
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </table>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="col mx-auto text-center m-2">
+                                    <button class="btn btn-success" type="submit">Créer</button>
+                                    <input class="btn btn-danger" type="reset" value="Reset">
+                                </div>
+                            </form>
+                        </div>
+
+
+                        <div class="col-6">
+                            <div class="card border-primary mb-3 " style="border-radius: 20px; background: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65))">
+                                <div class="card-header h2 text-light">
+                                    Activer votre carte
+                                </div>
+                                <form action="#" th:action="@{/carte/save}" th:object="${carte}" method="post">
+
+                                    <div class="table-responsive">
+
+                                        <table class=" table table-hover ">
+                                            <tr>
+                                                <td colspan="2">
+                                                    <label class="text-light">IdClient : </label>
+                                                    <input type="number" name="idClient" placeholder="00"
+                                                           class="text-center col-2">
+                                                </td>
+                                                <td>
+                                                    <label class="text-light">IdCompte : </label>
+                                                    <input type="number" name="idCompte" placeholder="00"
+                                                           class="text-center col-3">
+                                                </td>
+                                            </tr>
+                                            <tr>
+
+
+                                                <td colspan="2" class="text-light">
+                                                    Dépot de 50 $ pour activer le compte
+                                                </td>
+                                                <td>
+                                                    <button type="submit" value="Submit" class="btn btn-success btn-sm">
+                                                        Activer
+                                                    </button>
+                                                    <a class="btn btn-success btn-sm" th:href="@{/GenererNoCarte}">Générer
+                                                        NoCarte</a>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><label class="text-light">Dépot : </label>
+                                                    <input type="number" name="total" placeholder="00"
+                                                           th:value="${total}"
+                                                           class="h6 text-center col-6">
+                                                </td>
+                                                <td>
+                                                    <input type="text" name="noCarte" id="noCarte"
+                                                           th:value="${noCarte}"
+                                                           class="text-center" >
+                                                </td>
+                                                <td>
+                                                    <input type="text" name="dateExpiration"
+                                                           th:value="${dateExpiration}"
+                                                           class="h6 text-center">
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+
+
+                    <div class="card border-primary mb-3 "
+                         style="border-radius: 20px;background: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65))">
+                        <div class="card-header h2 text-center text-light">
+                            Faire une transaction
+                        </div>
+                        <div class="card-body text-primary 5 text-light">
+                            <div class="table-responsive">
+                                <table class=" table table-hover table-striped table-bordered  text-center ">
+                                    <tr>
+                                        <td class="text-light">
+                                            Sommaire
+                                        </td>
+                                        <td class="text-light">
+                                            150 $
+                                        </td>
+                                        <td class="text-light">
+                                            - 00 $
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3" class="text-light">
+                                            Entrer les informations nécessaire
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <input type="number" placeholder="00" class="h6 text-center">
+                                        </td>
+                                        <td>
+                                            <input type="number" placeholder="0000 0000 0000 0000"
+                                                   class="h4 text-center">
+                                        </td>
+                                        <td>
+                                            <input type="number" placeholder="8/27" class="h6 text-center">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <input class="m-3 text-center" placeholder="0000 0000 0000 0000">
+                                        </td>
+                                        <td>
+                                            <input type="number" placeholder="depot" class="m-3 text-center">
+                                        </td>
+                                        <td>
+                                            <input type="number" placeholder="retrait" class="m-3 text-center">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3">
+                                            <a href="#" class="btn bg-primary text-light">Valider</a>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="row m-5">
+                        <div class="col-8 mx-auto">
+                            <div class="card border-primary mb-3 " style="border-radius: 20px;">
+                                <div class="card-header h2 bg-primary">
+                                    Historique de vos transaction
+                                </div>
+                                <div class="card-body table-responsive">
+                                    <table class="table table-hover">
+                                        <thead>
+                                        <tr>
+                                            <th scope="col">
+                                                Numéro de carte
+                                            </th>
+                                            <th scope="col">
+                                                Date Expiration
+                                            </th>
+                                            <th scope="col">
+                                                Email du client
+                                            </th>
+                                            <th scope="col">
+                                                Type de compte
+                                            </th>
+                                            <th scope="col">
+                                                Total du compte
+                                            </th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <th scope="row">
+                                                123412341234
+                                            </th>
+                                            <td>
+                                                2027-07-07
+                                            </td>
+                                            <td>
+                                                email@gmail.com
+                                            </td>
+                                            <td>
+                                                cheque
+                                            </td>
+                                            <td>
+                                                5200.00
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">
+                                                2
+                                            </th>
+                                            <td>
+                                                Jacob
+                                            </td>
+                                            <td>
+                                                Thornton
+                                            </td>
+                                            <td>
+                                                @fat
+                                            </td>
+                                            <td>
+                                                @fat
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">
+                                                3
+                                            </th>
+                                            <td colspan="2">
+                                                Larry the Bird
+                                            </td>
+                                            <td>
+                                                @twitter
+                                            </td>
+                                            <td>
+                                                @fat
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </div>
+</div>
+
+
+</body>
+
+<div th:replace="common/header :: body-bottom-scripts"/>
+</html>

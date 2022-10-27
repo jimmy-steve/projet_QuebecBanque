@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://thymeleaf.org ">
+<head th:replace="common/header :: common-header"/>
+
+<body class="bg-dark">
+
+<div th:replace="common/header :: navbar"/>
+<br><br>
+
+<div class="accueil" id="home">
+    <h1 style="color: dodgerblue">Quebec Banque</h1>
+    <p class="sous-titre">La banque francophone de l'amérique du nord</p>
+
+
+    <div th:if="${message}" class="alert alert-success alert-dismissible fade show"
+         role="alert">
+        <strong>Succès !!</strong>
+        [[${message}]]
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <br>
+    </div>
+
+
+    <div class="container" >
+        <div class="row">
+            <div class="col-10 mx-auto m-2" >
+                <div class="text-center"><h2>[[${pageTitle}]]</h2></div><br>
+
+                <form action="#" th:action="@{/clients/save}" th:object="${client}" method="post"
+                      class="row g-3 needs-validation  m-3" style="border-radius: 15px;
+                      background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75))" novalidate>
+                    <div class="col-md-4">
+                        <label for="prenom" class="form-label text-light">Prénom</label>
+                        <input type="text" class="form-control" id="prenom" name="prenom" value="Mark"
+                               th:field="*{prenom}"
+                               placeholder="Walhberg" required>
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="nom" class="form-label text-light">Nom</label>
+                        <input type="text" class="form-control" id="nom" name="nom" value="Otto" th:field="*{nom}"
+                               placeholder="Mark" required>
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="email" class="form-label text-light">Email</label>
+                        <div class="input-group has-validation">
+                            <span class="input-group-text" id="inputGroupPrepend">@</span>
+                            <input type="email" class="form-control" id="email" name="email"
+                                   placeholder="email@gmail.com"
+                                   aria-describedby="inputGroupPrepend" th:field="*{email}" required>
+                            <div class="invalid-feedback">
+                                Please choose a username.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="adresse" class="form-label text-light">Adresse</label>
+                        <input type="text" class="form-control" id="adresse" name="adresse"
+                               placeholder="1 place Ville-Marie" th:field="*{adresse}" required>
+                        <div class="invalid-feedback">
+                            Please provide a valid city.
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="ville" class="form-label text-light">Ville</label>
+                        <input type="text" class="form-control" id="ville" name="ville"
+                               placeholder="Montréal" th:field="*{ville}" required>
+                        <div class="invalid-feedback">
+                            Please provide a valid city.
+                        </div>
+                        <div class="invalid-feedback">
+                            Please select a valid state.
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="pays" class="form-label text-light">Pays</label>
+                        <input type="text" class="form-control" id="pays" name="pays"
+                               placeholder="Canada" th:field="*{pays}" required>
+                        <div class="invalid-feedback">
+                            Please provide a valid city.
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-4">
+                        <label for="telephone" class="form-label text-light">Téléphone</label>
+                        <input type="text" class="form-control" name="telephone" id="telephone"
+                               placeholder="(514)582-2459" th:field="*{telephone}" required>
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="password" class="form-label text-light">Password</label>
+                        <input type="password" class="form-control" name="password" id="password" placeholder="*****"
+                               th:field="*{motDePasse}" required>
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="jourNaissance" class="form-label text-light">Date Naissance</label>
+                        <div class="input-group has-validation">
+                            <input type="number" class="form-control col" id="jourNaissance" placeholder="JJ"
+                                   aria-describedby="inputGroupPrepend" th:field="*{jourNaissance}" required>
+                            <input type="number" class="form-control col" id="moisNaissance" placeholder="MM"
+                                   aria-describedby="inputGroupPrepend" th:field="*{moisNaissance}" required>
+                            <input type="number" class="form-control col" id="anneeNaissance" placeholder="AAAA"
+                                   aria-describedby="inputGroupPrepend" th:field="*{anneeNaissance}" required>
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
+                            <label class="form-check-label text-light" for="invalidCheck">
+                                Agree to terms and conditions
+                            </label>
+                            <div class="invalid-feedback">
+                                You must agree before submitting.
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col mx-auto text-center">
+                        <button class="btn btn-primary" type="submit">Submit</button>
+                        <input type="reset" class="btn btn-danger" value="Reset">
+                        <br><br>
+                    </div>
+
+                </form>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</div>
+
+<div th:replace="common/header :: body-bottom-scripts" />
+</body>
+</html>

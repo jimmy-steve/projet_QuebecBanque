@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://thymeleaf.org ">
+<head th:replace="common/header :: common-header"/>
+
+<body class="bg-dark">
+
+<div th:replace="common/header :: navbar"/>
+<br><br>
+
+<div class="accueil" id="home">
+    <h1 style="color: dodgerblue">Quebec Banque</h1>
+    <p class="sous-titre">La banque francophone de l'amérique du nord</p>
+
+    <br>
+    <div class="container">
+        <div class="row">
+            <div class="col-8 mx-auto">
+
+
+                <form action="#" th:action="@{/addCompte}" th:object="${compte}" method="post"
+                      class="row g-3 needs-validation bg-light m-3" style="border-radius: 15px" novalidate>
+                    <div class="col-md-4">
+                        <div class="input-group-prepend">
+
+                                <label for="type" class="form-label">Type Compte</label><br>
+
+
+                            <select class="form-control" name="type" id="type" th:field="*{type}">
+                                <option th:value="epargne">Épargne</option>
+                                <option th:value="cheque">Chèque</option>
+                                <option th:value="retraitre">Retraite</option>
+                            </select>
+                        </div>
+                    </div>
+<!--                    <div class="col-md-4">-->
+<!--                        <label for="idClient" class="form-label">id Client </label>-->
+<!--                        <input type="number" class="form-control" id="idClient" name="idClient" th:field="*{idClient}"-->
+<!--                               required>-->
+<!--                        <div class="valid-feedback">-->
+<!--                            Looks good!-->
+<!--                        </div>-->
+<!--                    </div>-->
+
+                    <div class="col-12">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
+                            <label class="form-check-label">
+                                Agree to terms and conditions
+                            </label>
+                            <div class="invalid-feedback">
+                                You must agree before submitting.
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col mx-auto text-center">
+                        <button class="btn btn-primary" type="submit">Submit</button>
+                        <input type="reset" value="Reset">
+                        <br>
+                    </div>
+                </form>
+
+
+            </div>
+        </div>
+
+
+    </div>
+
+</div>
+
+<div th:replace="common/header :: body-bottom-scripts" />
+</body>
+</html>

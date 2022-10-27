@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://thymeleaf.org ">
+<head th:replace="common/header :: common-header"/>
+
+<body class="bg-dark">
+
+<div th:replace="common/header :: navbar"/>
+
+<!-- Accueil -->
+
+
+<div class="accueil" id="home">
+
+    <h1>Quebec Banque</h1>
+
+
+    <div class="container-fluid text-center">
+        <div><h2>Manage Clients</h2></div>
+
+        <div th:if="${message}" class="alert alert-success alert-dismissible fade show"
+             role="alert">
+            <strong>Succès !!</strong>
+            [[${message}]]
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+
+        </div>
+
+
+        <div class="container">
+            <div class="row">
+                <div col-11 mx-auto>
+                    <table class="table table-bordered bg-light text-dark">
+                        <thead class="thead-dark">
+                        <th>ID</th>
+                        <th>Nom</th>
+                        <th>Prenom</th>
+                        <th>Action</th>
+                        </thead>
+                        <!--/*@thymesVar id="listClients" type="lisClients"*/-->
+                        <th:block th:each="client : ${listClients}">
+                            <tbody>
+
+                            <td>[[${client.idClient}]]</td>
+                            <td>[[${client.nom}]]</td>
+                            <td>[[${client.prenom}]]</td>
+                            <td>
+                                <a class="h4 mr-3" th:href="@{/clients/edit/{id}(id=${client.idClient})}">Edit</a>
+
+
+                                <a class="h4" th:href="@{/clients/delete/{id}(id=${client.idClient})}">Delete</a>
+                            </td>
+
+                            </tbody>
+                        </th:block>
+                    </table>
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+</div>
+
+<!-- Section parallax -->
+<section class="parallax">
+    <p>Je me souviens</p>
+    <span>Partez à l'aventure</span>
+</section>
+
+<div th:replace="common/header :: body-bottom-scripts" />
+</body>
+</html>
+
+
+
+
+

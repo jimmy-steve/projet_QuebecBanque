@@ -1,0 +1,23 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://thymeleaf.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://thymeleaf.org ">
+<head th:replace="common/header :: common-header"/>
+
+<body class="bg-dark">
+
+<div th:replace="common/header :: navbar"/>
+<h1>Result</h1>
+
+<div th:if="${message}" class="alert alert-success text-center">
+    [[${message}]]
+</div>
+
+
+<p th:text="'username : ' + ${user.username}"></p>
+<p th:text="'iduser: ' + ${user.idUser}"></p>
+<a href="/addUser">Submit another message</a>
+
+
+<div th:replace="common/header :: body-bottom-scripts" />
+</body>
+</html>

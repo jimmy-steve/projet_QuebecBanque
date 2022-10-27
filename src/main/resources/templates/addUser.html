@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://thymeleaf.org
+http://thymeleaf.org ">
+<head th:replace="common/header :: common-header"/>
+
+<body class="bg-dark">
+
+<div th:replace="common/header :: navbar"/>
+<h1>Add User</h1>
+
+<form action="#" th:action="@{/addUser}" th:object="${user}" method="post">
+    <p>
+        UserName: <input type="text" th:field="*{username}">
+    </p>
+    <p>
+        Password: <input type="text" th:field="*{hashPassword}">
+    </p>
+    <p>
+        Comfirms Password: <input type="text" >
+    </p>
+
+    <p>
+        <input type="submit" value="Submit"/> <input type="reset" value="Reset">
+    </p>
+</form>
+
+
+<div th:replace="common/header :: body-bottom-scripts" />
+</body>
+</html>

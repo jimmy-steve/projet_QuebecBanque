@@ -1,0 +1,58 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://thymeleaf.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://thymeleaf.org ">
+<head th:replace="common/header :: common-header"/>
+
+<body class="bg-dark">
+
+<div th:replace="common/header :: navbar"/>
+<br><br><br><br>
+<div>
+    <h1 class="text-center text-light">Confirmation d'insertion dans la base donnée</h1>
+</div>
+
+<div th:if="${message}" class="alert alert-success alert-dismissible fade show"
+     role="alert">
+    <strong>Succès !!</strong>
+    [[${message}]]
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+
+
+<div class="row">
+    <div class="col-3 mx-auto">
+        <div class="list-group">
+            <button type="button" class="list-group-item list-group-item-action active text-center">
+                Client
+            </button>
+            <button type="button" class="list-group-item list-group-item-action"
+                    th:text="'Nom : ' + ${client.nom}"></button>
+            <button type="button" class="list-group-item list-group-item-action"
+                    th:text="'Prénom : ' + ${client.prenom}"></button>
+            <button type="button" class="list-group-item list-group-item-action" th:text="'Date de Naissance : '
+            + ${client.jourNaissance}+'/'+${client.moisNaissance}+'/'+${client.anneeNaissance}"></button>
+            <button type="button" class="list-group-item list-group-item-action"
+                    th:text="'Adresse : ' + ${client.adresse}"></button>
+            <button type="button" class="list-group-item list-group-item-action"
+                    th:text="'Pays : ' + ${client.pays}"></button>
+            <button type="button" class="list-group-item list-group-item-action"
+                    th:text="'Ville : ' + ${client.ville}"></button>
+            <button type="button" class="list-group-item list-group-item-action"
+                    th:text="'Téléphone : ' + ${client.telephone}"></button>
+            <button type="button" class="list-group-item list-group-item-action"
+                    th:text="'Émail : ' + ${client.email}"></button>
+        </div>
+    </div>
+</div>
+<br><br>
+<div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+    <a href="/index" class="btn btn-primary btn-lg px-4 gap-3">Acceuil</a>
+    <a href="/addClient" class="btn btn-primary btn-lg px-4">Ajouter un nouveau client</a>
+</div>
+
+
+<div th:replace="common/header :: body-bottom-scripts" />
+</body>
+</html>

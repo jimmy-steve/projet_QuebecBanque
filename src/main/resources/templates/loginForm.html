@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://thymeleaf.org ">
+<head th:replace="common/header :: common-header"/>
+<body class="bg-dark">
+<div th:replace="common/header :: navbar"/>
+<div class="banner1" id="home">
+<section>
+    <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100 ">
+            <div class="col-12 col-md-8 col-lg-6 col-xl-5 ">
+                <div class="card text-white border-3 mt-5 " style="border-radius: 4rem;
+                background: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65))">
+
+                    <div class="card-body p-5 text-center">
+
+                        <div class="mb-md-5 mt-md-4 pb-5">
+
+                            <h2 class="fw-bold mb-2 text-uppercase">Login</h2>
+                            <p class="text-white-50 mb-5">Please enter your login and password!</p>
+                            <form th:action="@{/login}" th:object="${user}" method="post">
+                                <div class="form-outline form-white mb-4">
+                                    <input   type="text"  id="username" name="username"  class="form-control form-control-lg"/>
+                                    <label class="form-label" for="username">Username</label>
+
+                                </div>
+
+                                <div class="form-outline form-white mb-4">
+                                    <input  type="password" id="hashPassword" name="hashPassword" class="form-control form-control-lg"/>
+                                    <label class="form-label" for="hashPassword">Password</label>
+                                </div>
+
+                                <p class="small mb-5 pb-lg-2"><a class="text-white-50" href="#!">Forgot
+                                    password?</a></p>
+
+                                <button class="btn btn-outline-light btn-lg px-5" type="submit">Login</button>
+                            </form>
+                        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+                        <div>
+                            <p class="mb-0">Don't have an account? <a href="#!" class="text-white-50 fw-bold">Sign
+                                Up</a>
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+    <section class="parallax">
+        <p>Je Me Souviens</p>
+        <span>Partez à l'aventure</span>
+    </section>
+</div>
+
+<div th:replace="common/header :: body-bottom-scripts" />
+</body>
+</html>

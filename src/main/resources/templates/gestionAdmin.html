@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://thymeleaf.org
+http://thymeleaf.org ">
+<head th:replace="common/header :: common-header"/>
+<body class="bg-dark">
+<div th:replace="common/header :: navbar"/>
+
+<!-- Accueil -->
+<div class="accueil" id="home">
+
+    <div class="container-fluid text-center">
+        <div>
+            <br><br><br>
+            <div class="row">
+
+                <div class="col-2">
+
+                    <div class="row m-2 mt-5 mb-5">
+                        <img src="https://us.123rf.com/450wm/nadya76/nadya761707/nadya76170700107/81544293-dlue-fleur-de-
+         lys-fond-noir-isol%C3%A9-avec-un-trac%C3%A9-de-d%C3%A9tourage-fermer-pas-d-ombres-pour-le-design-la-n.jpg?ver=6"
+                             alt="logo quebec">
+                    </div>
+
+                    <div class="row m-2 mt-5 mb-5">
+                        <a th:href="@{/clients}" class="btn btn btn-outline-secondary couleurBleu">Clients</a>
+                    </div>
+                    <div class="row m-2 mt-5 mb-5">
+                        <a th:href="@{/comptes}" class="btn btn-outline-secondary couleurBleu">Comptes</a>
+                    </div>
+                    <div class="row m-2 mt-5 mb-5">
+                        <a th:href="@{/cartes}" class="btn btn-outline-secondary couleurBleu">Cartes</a>
+                    </div>
+                    <div class="row m-2 mt-5 mb-5">
+                        <a th:href="@{/users}" class="btn btn-outline-secondary couleurBleu">Users</a>
+                    </div>
+                    <div class="row m-2 mt-5 mb-5">
+                        <a type="button" class="btn btn-outline-secondary couleurBleu">Secondary</a>
+                    </div>
+                </div>
+
+                <div class="col-10">
+
+
+                    <div th:if="${message}" class="alert alert-success alert-dismissible fade show"
+                         role="alert">
+                        <strong>Succès !!</strong>
+                        [[${message}]]
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+
+                    <table class="table text-light">
+                        <thead>
+                        <tr>
+                            <th scope="col" colspan="3" class="h2 couleurBleu">Tableau de bord Administration</th>
+                            <th class="h2"> Chez QUÉBEC BANQUE</th>
+                        </tr>
+                        </thead>
+                    </table>
+
+
+                    <div class="row m-2 p-4 shadow-4 rounded-3 card border-primary transparentBlack"
+                         th:if="${listDeClients}">
+                        <table class="table table-bordered text-light">
+                            <thead class="thead-dark">
+                            <th>ID</th>
+                            <th>Nom</th>
+                            <th>Prenom</th>
+                            <th>Action</th>
+                            </thead>
+                            <th:block th:each="client : ${listDeClients}">
+                                <tbody>
+                                <td>[[${client.idClient}]]</td>
+                                <td>[[${client.nom}]]</td>
+                                <td>[[${client.prenom}]]</td>
+                                <td>
+                                    <a class="h4 mr-3" th:href="@{/clients/edit/{id}(id=${client.idClient})}">Edit</a>
+                                    <a class="h4" th:href="@{/clients/delete/{id}(id=${client.idClient})}">Delete</a>
+                                </td>
+                                </tbody>
+                            </th:block>
+                        </table>
+                    </div>
+
+
+                    <div class="col-6 m-2 p-4 shadow-4 rounded-3 card border-primary transparentBlack mx-auto"
+                         th:if="${clientCourant}">
+                        <h2 class="text-light card-header text-center">[[${pageTitle}]]</h2>
+                        <form class="form" th:action="@{/client/update/{id}(id=${clientCourant.idClient})}"
+                              th:object="${clientCourant}" method="get">
+                            <table class="table table-bordered text-light">
+                                <thead>
+                                <tr>
+                                    <th scope="col">Information</th>
+                                    <th scope="col">Donnée</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <th scope="row"><label for="idClient">Id Client :</label></th>
+                                    <td>
+                                        <input type="number" id="idClient" name="idClient" disabled="disabled"
+                                               th:field="${clientCourant.idClient}" class="text-center col-xl-6"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row"><label for="nomModif">Nom :</label></th>
+                                    <td><input type="text" id="nomModif" name="nomModif"
+                                               th:field="${clientCourant.nom}" class="text-center col-xl-6"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row"><label for="prenomModif">Prénom :</label></th>
+                                    <td><input type="text" id="prenomModif" name="prenomModif"
+                                               th:field="${clientCourant.prenom}" class="text-center col-xl-6"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row"><label>Date Naisance :</label></th>
+                                    <td><input type="number" id="jourNaissanceModif" name="jourNaissanceModif"
+                                               th:field="${clientCourant.jourNaissance}" class="text-center col-xl-2"/>
+                                        <input type="number" id="moisNaissanceModif" name="moisNaissanceModif"
+                                               th:field="${clientCourant.moisNaissance}" class="text-center col-xl-2"/>
+                                        <input type="number" id="anneeNaissanceModif" name="anneeNaissanceModif"
+                                               th:field="${clientCourant.anneeNaissance}" class="text-center col-xl-2"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row"><label for="adresseModif">Adresse :</label></th>
+                                    <td><input type="text" id="adresseModif" name="adresseModif"
+                                               th:field="${clientCourant.adresse}" class="text-center col-xl-6"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row"><label for="paysModif">Pays :</label></th>
+                                    <td><input type="text" id="paysModif" name="paysModif"
+                                               th:field="${clientCourant.pays}" class="text-center col-xl-6"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row"><label for="villeModif">Ville :</label></th>
+                                    <td><input type="text" id="villeModif" name="villeModif"
+                                               th:field="${clientCourant.ville}" class="text-center col-xl-6"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row"><label for="telephoneModif">Téléphone :</label></th>
+                                    <td><input type="text" id="telephoneModif" name="telephoneModif"
+                                               th:field="${clientCourant.telephone}" class="text-center col-xl-6"/>
+                                    </td>
+                                </tr>
+                                </tbody>
+                                <tr>
+                                    <td colspan="2" class="text-center">
+                                        <input type="hidden" name="idDuClient" value="${clientCourant.idClient}">
+                                        <button type="submit" class="btn btn-outline-success">Submit</button>
+                                    </td>
+                                </tr>
+                            </table>
+                        </form>
+                    </div>
+
+
+                    <div class="row m-2 p-4 shadow-4 rounded-3 card border-primary transparentBlack"
+                         th:if="${listComptesClient}">
+                        <div col-12>
+                            <table class="table table-bordered text-light mt-3">
+                                <thead class="thead-dark">
+                                <th>ID Compte</th>
+                                <th>Type de Compte</th>
+                                <th>Id du client du compte</th>
+                                <th>Solde du compte</th>
+                                <th>Date création</th>
+                                <th>Action</th>
+                                </thead>
+                                <th:block th:each="compte : ${listComptesClient}">
+                                    <tbody>
+                                    <td>[[${compte.id}]]</td>
+                                    <td>[[${compte.type}]]</td>
+                                    <td>[[${compte.idClient}]]</td>
+                                    <td>[[${compte.solde}]]</td>
+                                    <td>[[${compte.dateCreation}]]</td>
+                                    <td>
+                                        <a class="h4 mr-3" th:href="@{/comptes/edit/{id}(id=${compte.id})}">Edit</a>
+                                        <a class="h4" th:href="@{/comptes/delete/{id}(id=${compte.id})}">Delete</a>
+                                    </td>
+                                    </tbody>
+                                </th:block>
+                            </table>
+                        </div>
+                    </div>
+
+
+                    <div class="col-6 m-2 p-4 shadow-4 rounded-3 card border-primary transparentBlack mx-auto"
+                         th:if="${compteCourant}">
+
+                        <h2 class="text-light card-header text-center">[[${pageTitle}]]</h2>
+                        <form class="form" th:action="@{/compte/update/{id}(id=${compteCourant.id})}"
+                              th:object="${compteCourant}" method="get">
+                            <table class="table table-bordered text-light">
+                                <thead>
+                                <tr>
+                                    <th scope="col">Information</th>
+                                    <th scope="col">Donnée</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <th scope="row"><label for="idCompteModif">Id Compte :</label></th>
+                                    <td>
+                                        <input type="number" id="idCompteModif" name="idCompteModif" disabled="disabled"
+                                               th:field="${compteCourant.id}" class="text-center"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row"><label for="typeModif">Type de compte :</label></th>
+                                    <td><input type="text" id="typeModif" name="typeModif"
+                                               th:field="${compteCourant.type}" class="text-center"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row"><label for="idCompteClientModif">Id Client :</label></th>
+                                    <td>
+                                        <input type="number" id="idCompteClientModif" name="idCompteClientModif"
+                                               disabled="disabled"
+                                               th:field="${compteCourant.idClient}" class="text-center"/>
+                                    </td>
+                                </tr>
+                                </tbody>
+                                <tr>
+                                    <td colspan="2" class="text-center">
+                                        <button type="submit" class="btn btn-outline-success">Submit</button>
+                                    </td>
+                                </tr>
+                            </table>
+                        </form>
+                    </div>
+
+
+                    <div class="row m-2 p-4 shadow-4 rounded-3 card border-primary transparentBlack"
+                         th:if="${listCartesClients}">
+                        <div col-12>
+                            <table class="table table-bordered text-light">
+                                <thead class="thead-dark">
+                                <th>ID Carte</th>
+                                <th>Nunméro de la carte</th>
+                                <th>Date d'expiration</th>
+                                <th>total du compte</th>
+                                <th>Action</th>
+                                </thead>
+                                <th:block th:each="carte : ${listCartesClients}">
+                                    <tbody>
+                                    <td>[[${carte.idCarte}]]</td>
+                                    <td>[[${carte.noCarte}]]</td>
+                                    <td>[[${carte.dateExpiration}]]</td>
+                                    <td>[[${carte.total}]]</td>
+                                    <td>
+                                        <a class="h4 mr-3" th:href="@{/cartes/edit/{id}(id=${carte.idCarte})}">Edit</a>
+                                        <a class="h4" th:href="@{/cartes/delete/{id}(id=${carte.idCarte})}">Delete</a>
+                                    </td>
+                                    </tbody>
+                                </th:block>
+                            </table>
+                        </div>
+                    </div>
+
+
+                    <div class="col-6 m-2 p-4 shadow-4 rounded-3 card border-primary transparentBlack mx-auto"
+                         th:if="${carteCourant}">
+
+                        <h2 class="text-light card-header text-center">[[${pageTitle}]]</h2>
+                        <form class="form" th:action="@{/carte/update/{id}(id=${carteCourant.idCarte})}"
+                              th:object="${carteCourant}" method="get">
+                            <table class="table table-bordered text-light">
+                                <thead>
+                                <tr>
+                                    <th scope="col">Information</th>
+                                    <th scope="col">Donnée</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <th scope="row"><label for="idCarteModif">Id Carte :</label></th>
+                                    <td>
+                                        <input type="number" id="idCarteModif" name="idCarteModif" disabled="disabled"
+                                               th:field="${carteCourant.idCarte}" class="text-center"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row"><label for="noCarteModif">Numéro de carte :</label></th>
+                                    <td><input type="number" id="noCarteModif" name="noCarteModif" disabled="disabled"
+                                               th:field="${carteCourant.noCarte}" class="text-center"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row"><label for="dateExpirationModif">Date Expiration :</label></th>
+                                    <td>
+                                        <input type="text" id="dateExpirationModif" name="dateExpirationModif"
+                                               disabled="disabled"
+                                               th:field="${carteCourant.dateExpiration}" class="text-center"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row"><label for="totalModif">Solde du compte :</label></th>
+                                    <td>
+                                        <input type="number" id="totalModif" name="totalModif"
+                                               th:field="${carteCourant.total}" class="text-center"/>
+                                    </td>
+                                </tr>
+                                </tbody>
+                                <tr>
+                                    <td colspan="2" class="text-center">
+                                        <button type="submit" class="btn btn-outline-success">Submit</button>
+                                    </td>
+                                </tr>
+                            </table>
+                        </form>
+                    </div>
+
+
+                    <div class="row m-2 p-4 shadow-4 rounded-3 card border-primary transparentBlack"
+                         th:if="${listUsers}">
+
+                        <div col-12>
+                            <table class="table table-bordered text-light">
+                                <thead class="thead-dark">
+                                <th>ID User</th>
+                                <th>Username</th>
+                                <th>isAdmin</th>
+                                <th>Action</th>
+                                </thead>
+                                <th:block th:each="user : ${listUsers}">
+                                    <tbody>
+
+                                    <td>[[${user.idUser}]]</td>
+                                    <td>[[${user.username}]]</td>
+                                    <td>[[${user.isAdmin}]]</td>
+                                    <td>
+                                        <a class="h4 mr-3" th:href="@{/users/edit/{id}(id=${user.idUser})}">Edit</a>
+                                        <a class="h4" th:href="@{/users/delete/{id}(id=${user.idUser})}">Delete</a>
+                                    </td>
+                                    </tbody>
+                                </th:block>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="col-6 m-2 p-4 shadow-4 rounded-3 card border-primary transparentBlack mx-auto"
+                         th:if="${userCourant}">
+
+                        <h2 class="text-light card-header text-center">[[${pageTitle}]]</h2>
+                        <form class="form" th:action="@{/user/update/{id}(id=${userCourant.idUser})}"
+                              th:object="${userCourant}" method="get">
+                            <table class="table table-bordered text-light">
+
+                                <thead>
+                                <tr>
+                                    <th scope="col">Information</th>
+                                    <th scope="col">Donnée</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <th scope="row"><label for="idModif">Id User :</label></th>
+                                    <td>
+                                        <input type="number" id="idModif" name="idModif" disabled="disabled"
+                                               th:field="${userCourant.idUser}" class="text-center"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row"><label for="usernameModif">Username :</label></th>
+                                    <td><input type="text" id="usernameModif" name="usernameModif"
+                                               th:field="${userCourant.username}" class="text-center"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <!--                                    <th scope="row"><label for="isAdminModif">is Admin :</label></th>-->
+                                    <!--                                    <td><input type="number" id="isAdminModif" name="isAdminModif"-->
+                                    <!--                                               th:field="${userCourant.isAdmin}"/></td>-->
+                                </tr>
+                                </tbody>
+                                <tr>
+                                    <td colspan="2" class="text-center">
+                                        <button type="submit" class="btn btn-outline-success">Submit</button>
+                                    </td>
+                                </tr>
+                            </table>
+                        </form>
+                    </div>
+
+
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+</div>
+
+
+<!-- Section parallax -->
+
+<section class="parallax">
+    <p>Je me souviens</p>
+    <span>Partez à l'aventure</span>
+</section>
+<div th:replace="common/header :: body-bottom-scripts"/>
+</body>
+</html>
+
+
+
+
+

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.thymeleaf.org ">
+<head th:replace="common/header :: common-header"/>
+
+<body class="bg-dark">
+
+<div th:replace="common/header :: navbar"/>
+
+<div class="accueil" id="home">
+    <img src="https://us.123rf.com/450wm/nadya76/nadya761707/nadya76170700107/81544293-dlue-fleur-de-
+         lys-fond-noir-isol%C3%A9-avec-un-trac%C3%A9-de-d%C3%A9tourage-fermer-pas-d-ombres-pour-le-design-la-n.jpg?ver=6"
+         alt="logo quebec" class="logo-kyoto ">
+    <h1>Quebec Banque</h1>
+    <p class="sous-titre">La banque francophone de l'amérique du nord</p>
+    <a href="#asym" class="btn-accueil">En savoir plus</a>
+</div>
+
+
+<!-- Section Asymétrique -->
+
+<section class="section-asymetrique" id="asym">
+
+    <h2>Pour le vrai monde</h2>
+
+    <div class="bloc bloc-left bloc-1">
+        <div class="bloc-txt-left">
+            <h3>Québec Banque est la pour vous !</h3>
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
+            <div class="text-center text-lg-center">
+                <a class="btn btn-danger m-3" href="/addClient">#1 Créer un accès client</a><br>
+<!--                <a class="btn  btn-danger m-3" href="/addCompte">#2 Créer un compte</a><br>-->
+                <a class="btn  btn-danger m-3" href="/addCarte">#3 Ajouter une carte</a><br>
+                <a class="btn  btn-danger m-3" href="/addCarte2">#3 Ajouter une carte2</a><br>
+            </div>
+        </div>
+    </div>
+
+    <img src="https://cdn.pixabay.com/photo/2016/06/05/20/47/paying-1438142__340.jpg"
+         alt="imageBuilding" class="img-grid img-grid-1">
+
+    <div class="bloc bloc-right bloc-2" id="corporatif">
+        <div class="bloc-txt-right">
+            <h3>Corporatif</h3>
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Omnis ullam autem voluptatibus quia maiores
+                voluptatem nesciunt inventore neque exercitationem, iste repellendus!</p>
+
+            <button type="button" class="btn-bloc-left" data-toggle="modal" data-target=".bd-example-modal-sm">
+                S'inscrire
+            </button>
+
+            <div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
+                 aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content  ">
+                        <div class="card bg-warning">
+                            <div class="row">
+                                <h2 class="text-center text-dark m-5">En Construction !!!</h2>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <img src="https://cdn.pixabay.com/photo/2020/07/14/03/31/montreal-5402669__340.jpg"
+         alt="imageBuilding" class="img-grid img-grid-2">
+
+    <div class="bloc bloc-left bloc-3" id="administration">
+        <div class="bloc-txt-left">
+            <h3>Administration</h3>
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Omnis ullam autem voluptatibus quia maiores
+                voluptatem nesciunt inventore neque exercitationem, iste repellendus! Earum dicta animi alias nostrum
+                officiis illo quibusdam illum sed sequi </p>
+            <div class="text-center">
+                <a class="btn  btn-danger m-2" th:href="@{/login}">Se connecter</a>
+                <a class="btn  btn-danger m-2" th:href="@{/gestionAdmin}">Super Admin</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="ligne-gauche"></div>
+    <div class="ligne-droite"></div>
+</section>
+
+
+
+
+<div >
+
+    <div class="col-md-6">
+        <div class="panel panel-primary">
+            <div class="panel-heading" style="font-family: 'Acme', sans-serif;">Consultation d'un compte</div>
+            <div class="panel-body">
+                <form th:action="@{/consulterCompte}" method="get">
+                    <div>
+                        <label>Code Cpte:</label> <input type="text" name="codeCompte"
+                                                        />
+                        <button type="submit" class="btn btn-primary">Ok</button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+
+        <div class="panel panel-primary" >
+            <div class="panel-heading" style="font-family: 'Acme', sans-serif;">Informations sur le compte</div>
+            <div class="panel-body">
+                <div>
+                    <label>Client:</label> <label ></label>
+                </div>
+                <div>
+                    <label>Code:</label> <label ></label>
+                </div>
+                <div>
+                    <label>Solde:</label> <label ></label>
+                </div>
+                <div>
+                    <label>Date Création:</label> <label
+                        ></label>
+                </div>
+                <div>
+                    <label>Type du compte:</label> <label
+                        ></label>
+                </div>
+                <div >
+                    <label>Decouvert:</label> <label ></label>
+                </div>
+                <div >
+                    <label>Taux:</label> <label></label>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+
+
+</div>
+
+
+
+<!-- Section parallax -->
+
+<section class="parallax">
+    <p>Je Me Souviens</p>
+    <span>Partez à l'aventure</span>
+</section>
+
+
+<div th:replace="common/header :: body-bottom-scripts" />
+</body>
+</html>
